@@ -2,7 +2,9 @@
 
 <ul>
  <% @ratings.each do |rating| %>
-   <li> <%= rating.to_s %> </li>
+	
+   <li> <%= rating.to_s %> <%= rating.beer_id %></li>
  <% end %> 
 </ul>
+<%= link_to 'New rating', ratings_new_path %>
 

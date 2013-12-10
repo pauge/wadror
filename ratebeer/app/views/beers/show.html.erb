@@ -21,7 +21,7 @@
 
 <% else %>
 
-T‎his beer has <%= @beer.ratings.count %> ratings. With the average of
+T‎his beer has <%= pluralize(@beer.ratings.count, 'rating') %> . With the average of
 <%= @beer.average_rating %>
 
 <% end %>

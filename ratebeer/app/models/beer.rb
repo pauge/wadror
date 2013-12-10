@@ -5,12 +5,8 @@ class Beer < ActiveRecord::Base
   has_many :ratings
 
   def average_rating
-  	b = 0
-     self.ratings.each do |rating|
- 	b = b + rating.score
-     end
-        b = b / self.ratings.count
-     return "#{b}" 
+     b = self.ratings.average(:score)
+     return "#{b}"
      
   end
 end

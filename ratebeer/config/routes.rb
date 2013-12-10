@@ -1,6 +1,8 @@
 Ratebeer::Application.routes.draw do
   get 'ratings', to: 'ratings#index'
+  get 'ratings/new', to: 'ratings#new'
   get 'kaikki_bisset', to: 'beers#index'
+  post 'ratings', to: 'ratings#create'
   root :to => 'breweries#index'
   resources :beers
 
