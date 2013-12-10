@@ -1,3 +1,9 @@
+<p>
+<%= link_to 'All breweries', breweries_path %>
+<%= link_to 'All beers', beers_path %>
+</p>
+
+
 <h1>Listing beers</h1>
 
 <table>
@@ -25,3 +31,4 @@
 <br />
 
 <%= link_to 'New Beer', new_beer_path %>
+
