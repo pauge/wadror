@@ -1,0 +1,4 @@
+af426d7 HEAD@{0}: revert: Revert "gemfile updated for heroku"
+171fe47 HEAD@{1}: pull origin master: Merge made by the 'recursive' strategy.
+c562e5d HEAD@{2}: commit: README päivitetty
+db04a72 HEAD@{3}: commit (initial): Herokutest
