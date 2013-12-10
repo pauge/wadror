@@ -1,3 +1,0 @@
-The heroku instance of my ratebeer application can be found at:
-
-http://frozen-stream-4432.herokuapp.com/
