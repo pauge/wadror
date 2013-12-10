@@ -21,7 +21,7 @@
 
 <% else %>
 
-T‎his beer has <%= @beer.ratings.count %> ratings. With the average of
+T‎his beer has <%= @beer.ratings.count %> ratings. Averaging at
 <%= @beer.average_rating %>
 
 <% end %>
