@@ -1,0 +1,104 @@
+irb(main):007:0> b = Brewery.create :name => 'Brewdog', :year => 2007
+   (0.2ms)  begin transaction
+  SQL (1.0ms)  INSERT INTO "breweries" ("created_at", "name", "updated_at", "year") VALUES (?, ?, ?, ?)  [["created_at", Tue, 10 Dec 2013 17:34:11 UTC +00:00], ["name", "Brewdog"], ["updated_at", Tue, 10 Dec 2013 17:34:11 UTC +00:00], ["year", 2007]]
+   (441.9ms)  commit transaction
+=> #<Brewery id: 4, name: "Brewdog", year: 2007, created_at: "2013-12-10 17:34:11", updated_at: "2013-12-10 17:34:11">
+irb(main):008:0> b.save
+b.save   b.save!  
+irb(main):008:0> b.save
+   (0.3ms)  begin transaction
+   (0.1ms)  commit transaction
+=> true
+irb(main):009:0> b = Beer.create :^C
+irb(main):009:0> Beer.first
+  Beer Load (0.5ms)  SELECT "beers".* FROM "beers" LIMIT 1
+=> #<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2013-12-10 17:28:13", updated_at: "2013-12-10 17:28:13">
+irb(main):010:0> b = Beer.create :name => 'Punk IPA', :style => 'IPA', :brewery_id => 4
+   (0.3ms)  begin transaction
+  SQL (1.5ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 4], ["created_at", Tue, 10 Dec 2013 17:36:27 UTC +00:00], ["name", "Punk IPA"], ["style", "IPA"], ["updated_at", Tue, 10 Dec 2013 17:36:27 UTC +00:00]]
+
+   (392.3ms)  commit transaction
+=> #<Beer id: 9, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2013-12-10 17:36:27", updated_at: "2013-12-10 17:36:27">
+irb(main):011:0> 
+irb(main):012:0* b.save
+   (0.2ms)  begin transaction
+   (0.1ms)  commit transaction
+=> true
+irb(main):013:0> Brewdog.beers.create :name => 'Nanny State', :style => 'lowalcohol', :brewery_id => 4
+NameError: uninitialized constant Brewdog
+	from (irb):13
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands/console.rb:47:in `start'
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands/console.rb:8:in `start'
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+                 ^C
+                 b.save^C
+irb(main):014:0> b = Beer.create :name => '"Nanny State', :style => 'lowalcohol', :brewery_id => 4
+   (0.2ms)  begin transaction
+  SQL (1.1ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 4], ["created_at", Tue, 10 Dec 2013 17:40:13 UTC +00:00], ["name", "\"Nanny State"], ["style", "lowalcohol"], ["updated_at", Tue, 10 Dec 2013 17:40:13 UTC +00:00]]
+   (386.1ms)  commit transaction
+=> #<Beer id: 10, name: "\"Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2013-12-10 17:40:13", updated_at: "2013-12-10 17:40:13">
+irb(main):015:0> b = Beer.find_by_name "Nanny State"
+  Beer Load (0.9ms)  SELECT "beers".* FROM "beers" WHERE "beers"."name" = 'Nanny State' LIMIT 1
+=> nil
+irb(main):016:0> b = Beer.find_by_name ""Nanny State"
+irb(main):017:0" ^C
+irb(main):017:0> b = Beer.find_by_name '"Nanny State'
+  Beer Load (0.6ms)  SELECT "beers".* FROM "beers" WHERE "beers"."name" = '"Nanny State' LIMIT 1
+=> #<Beer id: 10, name: "\"Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2013-12-10 17:40:13", updated_at: "2013-12-10 17:40:13">
+irb(main):018:0> b.name => 'Nanny State'
+SyntaxError: (irb):18: syntax error, unexpected tASSOC, expecting $end
+b.name => 'Nanny State'
+         ^
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands/console.rb:47:in `start'
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands/console.rb:8:in `start'
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+irb(main):019:0> b.name => 'Nanny State'^C
+irb(main):019:0> b.update_attribute :name => 'Nanny State'
+ArgumentError: wrong number of arguments (1 for 2)
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/activerecord-3.2.14/lib/active_record/persistence.rb:177:in `update_attribute'
+	from (irb):19
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands/console.rb:47:in `start'
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands/console.rb:8:in `start'
+	from /home/arto/.rbenv/versions/1.9.3-p327/lib/ruby/gems/1.9.1/gems/railties-3.2.14/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+irb(main):020:0> b.update_attribute :name, 'Nanny State'
+   (0.3ms)  begin transaction
+   (0.7ms)  UPDATE "beers" SET "name" = 'Nanny State', "updated_at" = '2013-12-10 17:45:34.799021' WHERE "beers"."id" = 10
+   (552.1ms)  commit transaction
+=> true
+irb(main):021:0> c^C
+irb(main):021:0> ^C
+irb(main):021:0> ^C
+irb(main):021:0> b
+=> #<Beer id: 10, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2013-12-10 17:40:13", updated_at: "2013-12-10 17:45:34">
+irb(main):022:0> Beer.r^C
+irb(main):022:0> b.ratings.create :score => 20
+   (0.2ms)  begin transaction
+  SQL (1.2ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 10], ["created_at", Tue, 10 Dec 2013 17:47:21 UTC +00:00], ["score", 20], ["updated_at", Tue, 10 Dec 2013 17:47:21 UTC +00:00]]
+   (457.1ms)  commit transaction
+=> #<Rating id: 4, score: 20, beer_id: 10, created_at: "2013-12-10 17:47:21", updated_at: "2013-12-10 17:47:21">
+irb(main):023:0> b.ratings.create :score => 44
+   (0.2ms)  begin transaction
+  SQL (1.1ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 10], ["created_at", Tue, 10 Dec 2013 17:47:27 UTC +00:00], ["score", 44], ["updated_at", Tue, 10 Dec 2013 17:47:27 UTC +00:00]]
+   (406.9ms)  commit transaction
+=> #<Rating id: 5, score: 44, beer_id: 10, created_at: "2013-12-10 17:47:27", updated_at: "2013-12-10 17:47:27">
+irb(main):024:0> b = Beer.find_by_name 'Punk IPA'
+  Beer Load (0.2ms)  SELECT "beers".* FROM "beers" WHERE "beers"."name" = 'Punk IPA' LIMIT 1
+=> #<Beer id: 9, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2013-12-10 17:36:27", updated_at: "2013-12-10 17:36:27">
+irb(main):025:0> b.ratings.create :score => 34
+   (0.2ms)  begin transaction
+  SQL (1.3ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 9], ["created_at", Tue, 10 Dec 2013 17:48:53 UTC +00:00], ["score", 34], ["updated_at", Tue, 10 Dec 2013 17:48:53 UTC +00:00]]
+   (379.6ms)  commit transaction
+=> #<Rating id: 6, score: 34, beer_id: 9, created_at: "2013-12-10 17:48:53", updated_at: "2013-12-10 17:48:53">
+irb(main):026:0> b.ratings.create :score => 11
+   (0.2ms)  begin transaction
+  SQL (1.1ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 9], ["created_at", Tue, 10 Dec 2013 17:48:57 UTC +00:00], ["score", 11], ["updated_at", Tue, 10 Dec 2013 17:48:57 UTC +00:00]]
+   (438.9ms)  commit transaction
+=> #<Rating id: 7, score: 11, beer_id: 9, created_at: "2013-12-10 17:48:57", updated_at: "2013-12-10 17:48:57">
+irb(main):027:0> 
+
