@@ -5,8 +5,12 @@ class Beer < ActiveRecord::Base
   has_many :ratings
 
   def average_rating
-     b = self.ratings.average(:score)
-     return "#{b}"
-     
+     	b = self.ratings.average(:score)
+     	return "#{b}" 
   end
+  def to_s
+	b = Brewery.find_by_id "#{brewery_id}"
+ 	b = "#{self.name}, #{b.name}" 	
+	return b  
+end
 end

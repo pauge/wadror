@@ -1,7 +1,8 @@
 <h2> Create a new rating</h2>
 
+<% beers = Beer.all.map { |beer| [beer.to_s, beer.id]} %>
 <%= form_for(@rating) do |f| %>
- beer id: <%= f.number_field :beer_id %>
+<%= f.select :beer_id, options_for_select(beers)%>
  score: <%= f.number_field :score %>
  <%= f.submit %>
 <% end %>

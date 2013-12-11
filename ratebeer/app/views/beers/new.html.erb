@@ -1,5 +1,7 @@
 <h1>New beer</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', beers_path %>
+<%= form_for(@beer) do |b| %>
+Name: <%= b.text_field :name %>
+<%= b.select :style, options_for_select(@styles) %>
+<%= b.submit %>
+<% end %>
