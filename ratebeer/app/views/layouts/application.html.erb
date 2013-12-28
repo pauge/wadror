@@ -8,6 +8,16 @@
 </head>
 <body>
 
+<%if not current_user.nil? %>
+		<p>Signed in as: <b><%= current_user.username %></b></p>
+<% end %>
+
+<%if session[:last_rating].nil?%>
+	<p>No ratings given</p>
+<% else %>
+	<p> Previous rating: <%= session[:last_rating] %> </p>
+<% end %>
+
 <div class="navi">
  <%= link_to 'Breweries', breweries_path %>
  <%= link_to 'Beers', beers_path %>

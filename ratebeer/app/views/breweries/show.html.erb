@@ -22,5 +22,18 @@
    <% end %>
 </p>
 
+<p>
+	This brewery's beers have a total of
+	<%=pluralize(@brewery.ratings.count, 'rating')%> 
+	<%if(@brewery.ratings.count>1)%>
+	<%="averaging at"%>
+	<%end%>
+	<%if(@brewery.ratings.count==1)%>
+		<%="with the value of"%>
+	<%end%>
+	<%=@brewery.average_rating%>
+
+</p>
+
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
