@@ -18,5 +18,15 @@
 </ul>
 <% end %>
 
+<p> In the following Beer Clubs:
+<%if @user.memberships.count > 0 %>
+	<%@user.memberships.each do |m| %>
+		<% c = BeerClub.find(m.beer_club_id) %>
+		<%= link_to "#{c.name}", beer_club_path(m.beer_club_id) %>
+	<% end %>
+	</p>
+	<p></p>
+<% end %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

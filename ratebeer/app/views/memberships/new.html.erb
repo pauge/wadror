@@ -1,0 +1,9 @@
+<h2> Join a Club </h2>
+
+<p id="notice"><%= notice %></p>
+<% clubs = BeerClub.all.map { |club| [club.name, club.id]} %>
+<%= form_for(@membership) do |m| %>
+<%= m.select :beer_club_id, options_for_select(clubs) %>
+<%= m.hidden_field :user_id, :value => current_user.id %>
+<%= m.submit %>
+<% end %>
