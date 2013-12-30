@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     respond_to do |format|
-      if @user.save
+			if  @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if params[:user][:username].nil? and signed_in?(@user) and @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -73,11 +73,14 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
-  end
+		if signed_in?(@user)
+    	@user.destroy
+			Rating.all.select{ |r| r.user.nil?}.each{ |r| r.delete}
+			Membership.all.select{ |m| m.user.nil?}.each{ |m| m.delete}
+  		session[:user_id] = nil
+			redirect_to :root  		
+  	else
+			redirect_to :back
+		end
+	end
 end

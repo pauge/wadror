@@ -4,9 +4,15 @@ class RatingsController < ApplicationController
 		end
    
 		def create
-			rating = Rating.create params[:rating]
-			current_user.ratings << rating
-			redirect_to user_path(current_user)
+			@rating = Rating.new params[:rating]
+			
+			if @rating.save
+				current_user.ratings << @rating
+				redirect_to user_path(current_user)
+			else
+				@beers = Beer.all
+				render :new
+			end
 		end
   
 		def average_rating
@@ -21,7 +27,7 @@ class RatingsController < ApplicationController
    
 		def destroy
 			rating = Rating.find params[:id]
-			rating.delete if current_user == rating.user
+			rating.delete if signed_in?(rating.user)
 			redirect_to :back
    	end
 end

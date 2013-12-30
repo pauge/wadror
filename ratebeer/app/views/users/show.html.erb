@@ -13,7 +13,12 @@
 <% if @user.ratings.count >= 1 %>
 <ul>
 	<%@user.ratings.each do |rating| %>
-		<li>  <%= rating.to_s	%> <%= link_to 'Delete', rating, method: :delete, data: {confirm:	'Are you sure?'} %></li>
+		<li>  <%= rating.to_s	%> 
+					<% if signed_in?(@user) %>
+						<%= link_to 'Delete', rating, method: :delete, data: {confirm:	'Are you sure?'} %></li>
+					<% else %>
+						</li>
+					<% end %>
 	<% end %>
 </ul>
 <% end %>
@@ -25,8 +30,12 @@
 		<%= link_to "#{c.name}", beer_club_path(m.beer_club_id) %>
 	<% end %>
 	</p>
-	<p></p>
+	<% else %>
+		</p>
 <% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+<% if signed_in?(@user) %>|
+	<%= link_to 'Edit', edit_user_path(@user) %> 
+	<%= link_to 'Delete', @user, method: :delete, data: {confirm: 'Are you sure?'} %>
+	<% end %>

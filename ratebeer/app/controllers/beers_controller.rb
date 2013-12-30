@@ -44,9 +44,11 @@ class BeersController < ApplicationController
     @beer = Beer.new(params[:beer])
 
       if @beer.save
-		redirect_to beers_path
+				redirect_to beers_path
       else
-   		respond_to do |format|
+   			@breweries = Brewery.all
+        @styles = ["Weizen","Lager","Pale ale", "IPA", "Porter"]
+				respond_to do |format|
         format.html { render action: "new" }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
@@ -63,7 +65,7 @@ class BeersController < ApplicationController
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+				format.html { render action: "edit" }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
     end

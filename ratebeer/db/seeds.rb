@@ -19,4 +19,4 @@ b3.beers.create :name => "Hefezeizen", :style => "Weizen"
 b3.beers.create :name => "Helles", :style => "Lager"
 b1.beers.create :name => "Aventinus", :style => "Weizenbock"
 
-u1 = User.create :username => "Seed"
+
