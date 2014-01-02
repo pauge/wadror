@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 group :development, :test do
   gem 'sqlite3'
+	gem 'rspec-rails', '~> 2.0'
 end
 
 group :production do
@@ -25,12 +26,18 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-	gem 'bcrypt-ruby', '~> 3.0.0'
+end
+
+group :test do
+	gem 'factory_girl_rails'
 end
 
 gem 'jquery-rails'
 gem 'rb-readline', '~> 0.4.2'
 gem 'debugger', :group => :development
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

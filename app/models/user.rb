@@ -17,14 +17,20 @@ class User < ActiveRecord::Base
 	has_many :beer_clubs, :through => :memberships
 
 	def password_contains_only_characters?
-		b = true 		#lets assume it does
-		if not !!self.password.match(/^[[:alpha:]]+$/) 	#if it DOES HAVE numbers or special characters
-			b = false																			#we alter the boolean value. even on hit is enough
-		end
+		if not self.password.nil?
+			b = true 		#lets assume it does
+			if not !!self.password.match(/^[[:alpha:]]+$/) 	#if it DOES HAVE numbers or special characters
+				b = false																			#we alter the boolean value. even on hit is enough
+			end
 
-		if b == true																		#if the boolean value remains unchanged we return an error
+			if b == true																		#if the boolean value remains unchanged we return an error
 				errors.add(:password, " must have numbers and/or special characters")
-		end
+			end
+	end
 	end
 
+	def favorite_beer
+		return nil if ratings.empty?
+		ratings.sort_by{ |r| r.score}.last.beer
+	end
 end
