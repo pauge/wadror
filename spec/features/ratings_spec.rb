@@ -42,4 +42,18 @@ describe "Rating" do
 		expect(page).to have_content "Iso 3, 15 Delete"
 		expect(page).to have_content "Karhu, 17"
 	end
+	it "disappears from users page after deletion" do
+		visit new_rating_path
+		select(beer1.to_s, :from => 'rating[beer_id]')
+		fill_in('rating[score]', :with => '15')
+		click_button "Create Rating"
+		
+		visit user_path(user)
+
+		expect(page).to have_content("Iso 3")
+		
+		first(:link,  "Delete").click
+		
+		expect(Rating.count).to eq(0)
+		end
 end

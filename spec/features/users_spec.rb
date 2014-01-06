@@ -2,9 +2,7 @@
 		include OwnTestHelper
 
 describe "User" do
-	before :each do
-			FactoryGirl.create(:user)
-	end
+			let!(:user){FactoryGirl.create :user}
 
 	it "when signup accepted is added to the system" do
 		visit signup_path
@@ -30,5 +28,31 @@ describe "User" do
 			expect(page).to have_content 'Incorrect username/password!'
 		end
 	end
+	describe "who has signed in" do
+		let!(:brewery){FactoryGirl.create :brewery, :name =>"Koff"}
+		before :each do
+			sign_in 'Pekka', 'foobar1'
+		end
 
+		it "can create a Beer" do
+			visit new_beer_path
+			fill_in('beer[name]', :with => "Halko")
+			select('Lager', :from => 'beer[style]')
+			select(brewery.name, :from => 'beer[brewery_id]')
+			click_button "Create Beer"
+
+			expect(page).to have_content "Listing beers"
+			expect(page).to have_content "Halko"
+
+		end
+		it "and after rating has a favorite style and brewery" do
+			beer = FactoryGirl.create(:beer, :name => "Halko", :style => "Lager", :brewery => brewery)
+			rating = FactoryGirl.create(:rating, :beer => beer, :user => user)
+
+			visit user_path(user)
+			expect(page).to have_content "Favorite beer style: Lager"
+			expect(page).to have_content "Favorite brewery: Koff"
+
+		end
+	end
 end
