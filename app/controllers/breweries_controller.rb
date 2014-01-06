@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
 
-  before_filter :authenticate
+  #before_filter :authenticate
 
   # GET /breweries
   # GET /breweries.json

@@ -34,6 +34,10 @@
 		</p>
 <% end %>
 
+<p> Favorite beer style: <%= @user.top_rated_style %> </p>
+
+<p> Favorite brewery: <%= @user.top_rated_brewery %> </p>
+
 <%= link_to 'Back', users_path %>
 <% if signed_in?(@user) %>|
 	<%= link_to 'Edit', edit_user_path(@user) %> 

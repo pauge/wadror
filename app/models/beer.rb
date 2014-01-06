@@ -12,6 +12,10 @@ class Beer < ActiveRecord::Base
   def to_s
 	b = Brewery.find_by_id "#{brewery_id}"
  	b = "#{self.name}, #{b.name}" 	
-	return b  
-end
+	return b 
+	end
+
+	def get_styles
+		return ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+	end
 end
