@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	include AverageRating
 
-	attr_accessible :username, :password, :password_confirmation
+	attr_accessible :username, :password, :password_confirmation, :admin
 
 	validates_uniqueness_of :username
 	validates_length_of :username, :minimum => 3, :maximum => 15

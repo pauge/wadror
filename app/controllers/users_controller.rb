@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  # GET /users
+  before_filter :ensure_that_signed_in, :except => [:index, :new, :show, :create]
+	
+	# GET /users
   # GET /users.json
   def index
     @users = User.all
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+		@user.admin = false 
     respond_to do |format|
 			if  @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

@@ -1,5 +1,7 @@
 class BeersController < ApplicationController
-  # GET /beers
+  before_filter :ensure_that_signed_in, :except => [:index, :show]
+	
+	# GET /beers
   # GET /beers.json
   def index
     @beers = Beer.all
