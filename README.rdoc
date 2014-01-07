@@ -1,1 +1,3 @@
 The app can be found at http://frozen-stream-4432.herokuapp.com/
+
+https://travis-ci.org/pauge/wadror

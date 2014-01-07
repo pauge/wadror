@@ -8,3 +8,9 @@ script:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
 - bundle exec rake db:test:prepare
 - bundle exec rspec -f d spec/
+
+deploy:
+	provider: heroku
+	api_key: "ChqDb5ZOK/ATwB/46HdXNqewUXNj9dF/8SZ7TGfXUkNu6VnMPjoRXBimfZflVh2pT7Q/ovNHQ1shzMphphRB1KgDdQlM6/iPk5dOJvQ5Eeg93mQ1g8EksDj8wLS7Z4tzPjNoMNrRkPbrAIynUnstsrDTXT5rAP6Q+n1BVjxWxv0=" 
+	app: frozen-stream-4432
+	run: "rake db:migrate"
