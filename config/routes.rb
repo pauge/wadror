@@ -1,13 +1,19 @@
 Ratebeer::Application.routes.draw do
   
 	
-	resources :beer_clubs
-  resources :users
   get 'kaikki_bisset', to: 'beers#index'
+	
 	get 'signup', to: 'users#new'
 	get 'signin', to: 'sessions#new'
 	delete 'signout', to: 'sessions#destroy'
-  root :to => 'breweries#index'
+	
+	get 'places', to: 'places#index'
+  post 'places' => 'places#search'
+
+	root :to => 'breweries#index'
+	
+	resources :beer_clubs
+  resources :users
 	resources :memberships, :only => [:index, :new, :create, :destroy]
   resources :beers
   resources :ratings, :only => [:index, :new, :create, :destroy]

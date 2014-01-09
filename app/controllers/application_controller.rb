@@ -17,9 +17,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def is_admin
-		if current_user
-			return current_user.admin
-		end
+		redirect_to signin_path, :notice => 'You are not an admin, log in as one... If you can!' if current_user.nil? or not current_user.admin
 	end
 
 end

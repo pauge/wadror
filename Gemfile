@@ -39,6 +39,8 @@ gem 'jquery-rails'
 gem 'rb-readline', '~> 0.4.2'
 gem 'debugger', :group => :development
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'httparty'
+gem 'webmock'
 
 
 
