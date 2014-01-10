@@ -13,4 +13,8 @@ class PlacesController < ApplicationController
 		end
 	end
 
+	def show
+		render :index
+	end
+
 end

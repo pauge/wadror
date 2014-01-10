@@ -71,7 +71,7 @@ describe User do
 
 		it "with one rating favors that style" do
 			beer = create_beer_with_rating 10, user
-			expect(user.top_rated_style).to eq(beer.style)
+			expect(user.top_rated_style).to eq(beer.style.name)
 		end
 
 		it "is the style which's representatives score highest" do
@@ -80,7 +80,7 @@ describe User do
 			create_beer_with_rating 50, user
 			create_beer_with_rating 45, user
 
-			expect(user.top_rated_style).to eq(best.style)
+			expect(user.top_rated_style).to eq(best.style.name)
 		end
 	end
 

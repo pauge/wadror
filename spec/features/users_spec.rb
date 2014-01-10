@@ -30,6 +30,7 @@ describe "User" do
 	end
 	describe "who has signed in" do
 		let!(:brewery){FactoryGirl.create :brewery, :name =>"Koff"}
+		let!(:style) {FactoryGirl.create :style}
 		before :each do
 			sign_in 'Pekka', 'foobar1'
 		end
@@ -37,7 +38,7 @@ describe "User" do
 		it "can create a Beer" do
 			visit new_beer_path
 			fill_in('beer[name]', :with => "Halko")
-			select('Lager', :from => 'beer[style]')
+			select(style.name, :from => 'beer[style_id]')
 			select(brewery.name, :from => 'beer[brewery_id]')
 			click_button "Create Beer"
 
@@ -46,7 +47,7 @@ describe "User" do
 
 		end
 		it "and after rating has a favorite style and brewery" do
-			beer = FactoryGirl.create(:beer, :name => "Halko", :style => "Lager", :brewery => brewery)
+			beer = FactoryGirl.create(:beer, :name => "Halko", :style => style, :brewery => brewery)
 			rating = FactoryGirl.create(:rating, :beer => beer, :user => user)
 
 			visit user_path(user)

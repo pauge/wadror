@@ -1,12 +1,13 @@
 class Beer < ActiveRecord::Base
   include AverageRating
   
-  attr_accessible :brewery_id, :name, :style
+  attr_accessible :brewery_id, :name, :style_id
 
-	validates_presence_of :name, :style 
+	validates_presence_of :name, :style_id
   belongs_to :brewery
   has_many :ratings, :dependent => :destroy
 	has_many :raters, :through => :ratings, :source => :user
+	belongs_to :style
 
  
   def to_s

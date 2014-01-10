@@ -35,9 +35,8 @@ class User < ActiveRecord::Base
 	end
 
 	def get_styles
-		styles = Set.new
-		beers.each{ |b| styles.add(b.style)}  #add all available styles to a hash
-		return styles
+		styles = Style.all
+		return styles.map{|s| s.name }.uniq 
 	end
 
 	def style_average?
@@ -47,7 +46,7 @@ class User < ActiveRecord::Base
 		i = 0
 		s.each do |sty|
 			ratings.each do |r|
-				if r.beer.style.eql?(sty) #get the sum of scores for a beer type
+				if r.beer.style.name.eql?(sty) #get the sum of scores for a beer type
 					sum = sum + r.score
 					i +=1
 					end

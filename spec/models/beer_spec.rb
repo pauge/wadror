@@ -9,7 +9,7 @@ describe Beer do
 	end
 
 	it "has to have a style" do
-		beer = Beer.create :name => "Kolmonen", :style => nil
+		beer = Beer.create :name => "Kolmonen", :style_id => nil
 
 		expect(beer.valid?).to be(false)
 		expect(Beer.count).to eq(0)

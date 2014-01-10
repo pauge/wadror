@@ -1,0 +1,8 @@
+<h1> List of styles </h1>
+
+<ul>
+	<% Style.all.each do |s| %>
+		<li><%= link_to "#{s.name}" ,style_path(s)%></li>
+	<% end %>
+
+</ul>
