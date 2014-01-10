@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1> <%=@beer.name %> </h1>
 
-<p>
-  <b>Name:</b>
-  <%= @beer.name %>
-</p>
+<p id="notice"><%= notice %></p>
 
 <p>
   <b>Style:</b>
@@ -21,10 +18,16 @@
 
 <% else %>
 
-T‎his beer has <%= pluralize(@beer.ratings.count, 'rating') %> . With the average of
+This beer has <%= pluralize(@beer.ratings.count, 'rating') %> . With the average of
 <%= @beer.average_rating %>
-
 <% end %>
+
+<h4> Give a rating: </h4>
+	<%= form_for(@rating) do |f| %>
+		<%=f.hidden_field :beer_id %>
+		score: <%=f.number_field :score %>
+		<%= f.submit %>
+	<% end %>
 </p>
 
 <%= link_to('Edit', edit_beer_path(@beer)) if current_user %> |

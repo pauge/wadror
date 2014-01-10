@@ -1,0 +1,16 @@
+<% bar = BeermappingAPI.bar(params[:id]) %>
+<% points = BeermappingAPI.bar_points(params[:id]) %>
+
+<h1> <%= "#{bar["name"]}" %> </h1>
+
+<p><%= "#{bar["street"]}" %>, <%= "#{bar["zip"]}" %>, <%= "#{bar["country"]}" %></p>
+<p><b>Points:</b></p>
+<p>Overall:<%= "#{points["overall"]}" %></br>
+Selection:<%= "#{points["selection"]}" %></br>
+Service:<%= "#{points["service"]}" %></br>
+Atmosphere:<%= "#{points["atmosphere"]}" %></br>
+Food:<%= "#{points["food"]}" %></p>
+
+<iframe width ="300" height ="300" frameborder ="0" src="<%="#{bar["blogmap"]}"%>">
+</iframe>
+

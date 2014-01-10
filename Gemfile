@@ -33,6 +33,7 @@ group :test do
 	gem 'capybara'
 	gem 'launchy'
 	gem 'simplecov', :require => false
+	gem 'webmock'
 end
 
 gem 'jquery-rails'
@@ -40,7 +41,7 @@ gem 'rb-readline', '~> 0.4.2'
 gem 'debugger', :group => :development
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'httparty'
-gem 'webmock'
+gem 'rails-settings-cached', '0.2.4'
 
 
 

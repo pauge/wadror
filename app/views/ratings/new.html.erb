@@ -1,12 +1,11 @@
-<h2> Create a new rating</h2>
+<h2> Create a rating</h2>
 
 <% beers = Beer.all.map { |beer| [beer.to_s, beer.id]} %>
 <%= form_for(@rating) do |f| %>
 	
 	<%if @rating.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@rating.errors.count, "error") %> prohibited rating from being saved:</h2>
-
+			<h2><%= pluralize(@rating.errors.count, "error") %> prohibited the rating from being saved:</h2>
 			<ul>
 				<% @rating.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
@@ -15,7 +14,9 @@
 		</div>
 	<% end %>
 
-<%= f.select :beer_id, options_for_select(beers)%>
+<%= form_for(@rating) do |f| %>
+<%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, :selected => @rating.beer_id) %>
  score: <%= f.number_field :score %>
  <%= f.submit %>
+ <% end %>
 <% end %>
