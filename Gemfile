@@ -42,7 +42,11 @@ gem 'debugger', :group => :development
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'httparty'
 gem 'rails-settings-cached', '0.2.4'
-
+gem 'selenium-webdriver'
+gem 'database_cleaner', '< 1.1.0'
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 
 
 # To use ActiveModel has_secure_password

@@ -5,16 +5,16 @@ class PlacesController < ApplicationController
 	end
 	
 	def search
-		@places = BeermappingAPI.places_in(params[:city])
-		if @places.empty?
-			redirect_to places_path, :notice => "No locations in #{params[:city]}"
+		if not params[:city].eql?("")
+				@places = BeermappingAPI.places_in(params[:city])
+				if @places.empty?
+					redirect_to places_path, :notice => "No locations in #{params[:city]}"
+				else
+					render :index
+				end
 		else
-			render :index
+			redirect_to places_path, :notice => "Write a location"
 		end
-	end
-
-	def show
-		render :index
 	end
 
 end

@@ -19,7 +19,7 @@ class BeermappingAPI
 	def self.places_in city
 		Place #to ensure that the class is loaded
 		city = city.downcase
-		Rails.cache.write city, fetch_places_in(city), expires_in: 600.seconds if not Rails.cache.exist? city
+		Rails.cache.write city, fetch_places_in(city), expires_in: 10.seconds if not Rails.cache.exist? city
 
 		Rails.cache.read city
 	end

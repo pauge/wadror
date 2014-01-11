@@ -2,11 +2,11 @@
 
 <h1>Listing beers</h1>
 
-<table>
+<table class ="table table-hover">
   <tr>
-    <th>Name</th>
-    <th>Style</th>
-    <th>Brewery</th>
+    <th><%= link_to 'Name', beers_path(:order => "name") %></th>
+    <th><%= link_to 'Style', beers_path(:order => "style") %></th>
+    <th><%= link_to 'Brewery', beers_path(:order => "brewery") %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,18 +14,13 @@
 
 <% @beers.each do |beer| %>
   <tr>
-    <td><%= beer.name %></td>
+    <td><%= link_to "#{beer.name}", beer_path(beer) %></td>
     <td><%= beer.style.name %></td>
     <td><%= beer.brewery.name %></td>
-    <td><%= link_to 'Show', beer %></td>
-		<% if not current_user.nil? %>
-    <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
-    <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  	<% end %>
 	</tr>
 <% end %>
 </table>
 
 <br />
-<%= link_to('New Beer', new_beer_path) if current_user %>
+<%= link_to('New Beer', new_beer_path, :class => 'btn btn-primary') if current_user %>
 

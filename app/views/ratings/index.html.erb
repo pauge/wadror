@@ -2,7 +2,7 @@
 
 <ul>
  <% @ratings.each do |rating| %>
-   	<li> <%= rating.to_s %> <%= link_to  "#{rating.user.username}", user_path(rating.user) %> </li>
+   	<li> <%= rating.to_s %> <%= link_to  "#{rating.user.username}", user_path(rating.user), :class => 'btn btn-primary' %> </li>
  <% end %> 
 </ul>
 

@@ -1,6 +1,6 @@
 Ratebeer::Application.routes.draw do
   
-	
+	get	'beerlist' => 'beers#list'
   get 'kaikki_bisset', to: 'beers#index'
 	
 	get 'signup', to: 'users#new'

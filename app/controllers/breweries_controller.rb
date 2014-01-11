@@ -6,7 +6,7 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = Brewery.all
+    @breweries = Brewery.all.sort_by{ |b| b.send(params[:order] || 'name') }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -77,6 +77,7 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1.json
   def destroy
     @brewery = Brewery.find(params[:id])
+		Beer.all.each {|b| b.delete if b.brewery == (@brewery) }
     @brewery.destroy
 
     respond_to do |format|

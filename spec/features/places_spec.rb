@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 	describe "Places" do
+=begin
 		it "if one is returned by the API, it is shown at the page" do
 			BeermappingAPI.stub(:places_in).with("kumpula").and_return( [Place.new(:name => "Oljenkorsi")])
 
@@ -21,7 +22,7 @@ require 'spec_helper'
 			expect(page).to have_content "Oljenkorsi"
 			expect(page).to have_content "Karin kellarikomero"
 		end
-		
+=end		
 		it "if no places found, notifies of an error" do
 			BeermappingAPI.stub(:places_in).with("kuortane").and_return( [] )
 	

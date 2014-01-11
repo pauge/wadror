@@ -34,4 +34,13 @@ FactoryGirl.define do
 		name "Lager"
 		description "Laakeri"
 	end
+	
+	factory :style2, :class => Style do
+		name "Weisse"
+		description "Vehnane"
+	end
+	factory :style3, :class => Style do
+		name "Bock"
+		description "Pukki"
+	end
 end
