@@ -11,12 +11,13 @@ class Beer < ActiveRecord::Base
 
  
   def to_s
-	b = Brewery.find_by_id "#{brewery_id}"
- 	b = "#{self.name}, #{b.name}" 	
-	return b 
+		b = Brewery.find_by_id "#{brewery_id}"
+		b = "#{self.name}, #{b.name}" 	
+		return b 
 	end
 
-	def get_styles
-		return ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+	def self.top_rated(n)
+		desc_beers_average_ratings = Beer.all.sort_by{|b| b.average_rating}.reverse!
+		return desc_beers_average_ratings.take(n) 
 	end
 end

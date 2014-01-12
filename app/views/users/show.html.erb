@@ -38,8 +38,4 @@
 
 <p> Favorite brewery: <%= @user.top_rated_brewery %> </p>
 
-<%= link_to 'Back', users_path , :class => 'btn btn-primary'%>
-<% if signed_in?(@user) %>|
-	<%= link_to 'Edit', edit_user_path(@user) , :class => 'btn btn-primary'%> 
-	<%= link_to 'Delete', @user, method: :delete, data: {confirm: 'Are you sure?'} , :class => 'btn btn-danger'%>
-	<% end %>
+<%= edit_and_destroy_buttons(@user) %>

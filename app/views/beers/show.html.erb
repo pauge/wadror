@@ -30,6 +30,4 @@ This beer has <%= pluralize(@beer.ratings.count, 'rating') %> . With the average
 	<% end %>
 </p>
 
-<%= link_to('Edit', edit_beer_path(@beer), :class => 'btn btn-primary') if current_user %> |
-<%= link_to 'Back', beers_path, :class => 'btn btn-primary' %>
-<%= link_to 'Destroy', @beer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'%>
+<%= edit_and_destroy_buttons(@beer) %>

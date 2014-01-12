@@ -1,8 +1,64 @@
-<h2> List of ratings</h2>
+<h2> Rating statistics</h2>
 
-<ul>
- <% @ratings.each do |rating| %>
-   	<li> <%= rating.to_s %> <%= link_to  "#{rating.user.username}", user_path(rating.user), :class => 'btn btn-primary' %> </li>
+	<div>
+	<div class="span3">
+		<h4> Top rated beers</h4>
+		<table class="table table-hover">
+		 <% Beer.top_rated(3).each do |b| %>
+				<tr><td><%= link_to b.name, b %></td>
+						<td> <%= round(b.average_rating)  %></td>
+				</tr>
+		 <% end %> 
+		</table>
+	</div>
+
+	<div class="span3">
+		<h4> Top rated breweries</h4>
+		<table class="table table-hover">
+		 <% Brewery.top_rated(3).each do |b| %>
+				<tr><td><%= link_to b.name, b %></td>
+						<td> <%= round(b.average_rating)  %></td>
+				</tr>
+		 <% end %> 
+		</table>
+	</div>
+
+<div class="span3">
+		<h4> Top rated styles</h4>
+		<table class="table table-hover">
+		 <% Style.top_rated(3).each do |k,v| %>
+				<tr><td> <%= k %></td>
+						<td> <%= round(v) %></td>
+				</tr>
+		 <% end %> 
+		</table>
+	</div>
+</div>
+</div>
+</div>
+
+<div>
+<h4> Top raters</h4>
+<table class="table table-hover">
+	<thead>
+				<tr>
+						<td>Name</td>
+						<td> Amount of ratings</td>	
+				</tr>
+	</thead>
+	<% User.top_raters(3).each do |u| %>
+			<tr><td><%= link_to u.username, u %></td>
+				<td> <%= u.ratings.count %></td>	
+			</tr>
+	 <% end %> 
+</table>
+
+<h4> Recent ratings</h4>
+<table class="table table-hover">
+ <% Rating.recent.each do |rating| %>
+ 		<tr><td><%= link_to rating.to_s, rating.beer %></td>
+				<td> <%= link_to  "#{rating.user.username}", user_path(rating.user) %></td>
+		</tr>
  <% end %> 
-</ul>
-
+</table>
+</div>

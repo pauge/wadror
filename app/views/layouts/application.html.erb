@@ -30,7 +30,7 @@
 					
 					<%if not current_user.nil? %>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.username %></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><b><%= current_user.username %></b></a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 								<li class="dropdown"><%= link_to "#{current_user.username}", user_path(current_user) %></li>
 								<li class="dropdown"><%= link_to 'rate a beer', new_rating_path %></li>

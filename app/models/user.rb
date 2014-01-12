@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
 			end
 			return h #return hash containing all styles and their average points
 	end
+
 	def top_rated_style
 		return nil if ratings.empty?
 
@@ -91,6 +92,11 @@ class User < ActiveRecord::Base
 
 		s = brewery_average.max_by{|k,v| v}
 		return s[0]
+	end
+
+	def self.top_raters(n)
+		desc_rating_amount = User.all.sort_by{|u| -u.ratings.count}
+		return desc_rating_amount.take(n)
 	end
 end
 

@@ -29,7 +29,7 @@ describe "Rating" do
 		create_two_ratings
 
 		visit ratings_path
-		expect(page).to have_content "List of ratings"
+		expect(page).to have_content "Rating statistics"
 		expect(page).to have_content "Iso 3, 15"
 		expect(page).to have_content "Karhu, 17"
 	end

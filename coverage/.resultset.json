@@ -322,7 +322,7 @@
         1,
         null,
         1,
-        1,
+        null,
         null
       ],
       "/home/arto/HY/ror/ratebeer/spec/models/user_spec.rb": [
@@ -511,6 +511,6 @@
         null
       ]
     },
-    "timestamp": 1389483881
+    "timestamp": 1389568857
   }
 }
