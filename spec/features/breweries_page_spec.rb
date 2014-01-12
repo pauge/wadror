@@ -1,6 +1,7 @@
 	require 'spec_helper'
 	
-	describe "Breweries page" do 
+	describe "Breweries page" do
+=begin
 		it "should not have any before been created" do
 			visit breweries_path
 			expect(page).to have_content 'Listing breweries'
@@ -33,6 +34,5 @@
 				expect(page).to have_content "Established: 1897"
 			end
 		end
-	
-	
+=end	
 	end
