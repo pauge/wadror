@@ -54,6 +54,6 @@
 				BEERS.list = beers;
 				BEERS.show();
 			});
-		});
-	});
+		};
+});
 

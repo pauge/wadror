@@ -20,8 +20,8 @@ require 'spec_helper'
 
 			@beer1 = FactoryGirl.create(:beer, :name => "Nikolai", :brewery => @brewery1, :style => @style1)
 			
-			#@beer2 = FactoryGirl.create(:beer, :name => "Fastenbier", :brewery => @brewery2, :style_id => @style1.id)
-			#@beer3 = FactoryGirl.create(:beer, :name => "Lechte Weisse", :brewery => @brewery3, :style_id => @style1.id)
+			@beer2 = FactoryGirl.create(:beer, :name => "Fastenbier", :brewery => @brewery2, :style_id => @style1.id)
+			@beer3 = FactoryGirl.create(:beer, :name => "Lechte Weisse", :brewery => @brewery3, :style_id => @style1.id)
 		end
 
 		after :each do
